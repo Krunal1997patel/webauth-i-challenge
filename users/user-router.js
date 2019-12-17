@@ -6,19 +6,19 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 
-    const {username, password} = req.headers;
+    const body = req.headers;
 
     // console.log(username, password);
 
-    if(!username || !password){
+    if(!body.username || !body.password){
         res.status(400).json({
             message: `you have't login with right password or username`
         })
     }else{
         
-        userDB.FindByUsername({username}).first()
+        userDB.FindByUsername({username: body.username}).first()
         .then(user =>{
-            if(user && bcrypt.compareSync(password, user.password)){
+            if(user && bcrypt.compareSync(body.password, user.password)){
                 userDB.allUser()
                     .then(user => {
                         res.status(200).json(user)
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
                     })
             }else{
                 res.status(401).json({
-                    message: `You shell not pass`
+                    message: `You shall not pass`
                 })
             }
         })
