@@ -7,7 +7,7 @@ module.exports = {
 }
 
 function allUser(){
-    return databass('users').select('id', 'username')
+    return databass('users').select('id', 'username').orderBy('id')
 }
 
 function FindByUsername(name){
