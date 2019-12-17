@@ -1,12 +1,12 @@
 const express = require('express');
-const helmet = require('helmet');
+
+const middleware = require('./middleware.js');
+const router = require('./router.js');
 
 const server = express();
 
-server.use(helmet());
+middleware(server);
 
-server.get('/', (req, res) => {
-    res.send("you are runing live")
-})
+server.use('/api', router)
 
 module.exports = server;
