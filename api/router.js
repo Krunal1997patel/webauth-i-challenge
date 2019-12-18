@@ -6,7 +6,7 @@ const userRouter = require('../users/user-router.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.send('you are up and runing')
+    res.send('you asre up and runing')
 })
 
 router.use('/auth', authRouter);

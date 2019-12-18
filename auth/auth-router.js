@@ -44,6 +44,9 @@ router.post('/login', (req, res) =>{
         userDB.FindByUsername({username}).first()
         .then(user => {
             if(user && bcrypt.compareSync(password, user.password)){
+
+                req.session.user = user
+
                 res.status(201).json({
                     message: `Welcome back ${user.username}`, user
                 })
